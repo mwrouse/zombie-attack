@@ -141,8 +141,13 @@ function PlayerObj()
      ========================== */
   this.health = function(){ return health; }
 
+  // Do damage to the character
   this.damage = function(amount){
     health -= amount;
+
+    // Update the health label
+    this.updateHealth();
+
     return health;
   }
 
@@ -182,14 +187,12 @@ function PlayerObj()
       if (this.animation.frame > 5) { this.animation.frame = 0; }
     }
 
-
     else if (this.moving)
     {
       // -------- Walking Animation --------
       this.sprite = (this.animation.frame == 0) ? this.animation.direction.walking.frame1 : this.animation.direction.walking.frame2;
       this.animation.frame = (this.animation.frame == 0) ? 1 : 0; // Advance to the next frame on next draw
     }
-
 
     else
     {
@@ -238,6 +241,14 @@ function PlayerObj()
     return new Coordinates(this.location.x + Math.round(this.width / 2), this.location.y + this.height);
   }
 
+
+
+  // This will make the health display on load (constructor), from then on out it will only be updated when the player gets damage done to them
+  this.updateHealth();
+
+
+
+
 }
 
 
@@ -257,9 +268,6 @@ PlayerObj.prototype.draw = function(){
   // Update the sprite
   this.updateSprite();
   this.sprite.draw(this.location.x, this.location.y);
-
-  // Set the health value
-  this.updateHealth();
 
   // Reset
   this.moving = false;
