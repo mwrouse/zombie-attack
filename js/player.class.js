@@ -6,27 +6,6 @@ var HIGH_HEALTH = '#088A08';
 var MED_HEALTH = '#DBA901';
 var LOW_HEALTH = '#FF0000';
 
-
-var A_KEY = 65;
-var LEFT_KEY = 37;
-
-var W_KEY = 87;
-var UP_KEY = 38;
-
-var D_KEY = 68;
-var RIGHT_KEY = 39;
-
-var S_KEY = 83;
-var DOWN_KEY = 40;
-
-var Q_KEY = 81;
-var E_KEY = 69;
-var Z_KEY = 90;
-var X_KEY = 88;
-
-var SPACE_KEY = 32;
-
-
 var IDLE = 0;
 var WALKING_DOWN = 1;
 
@@ -455,55 +434,31 @@ $(document).on('keydown', function(e){
   	switch (e.keyCode)
   	{
       // A/Left
-      case A_KEY:
-  		case LEFT_KEY:
+      case Keys.a:
+  		case Keys.left:
   			player.moveLeft();
   			break;
 
       // W/Up
-      case W_KEY:
-  		case UP_KEY:
+      case Keys.w:
+  		case Keys.up:
   			player.moveUp();
   			break;
 
       // D/Right
-      case D_KEY:
-  		case RIGHT_KEY:
+      case Keys.d:
+  		case Keys.right:
   			player.moveRight();
   			break;
 
       // S/Down
-      case S_KEY:
-  		case DOWN_KEY:
+      case Keys.s:
+  		case Keys.down:
   			player.moveDown();
   			break;
 
-      // Q (Diagonal)
-      case Q_KEY:
-        player.moveUp();
-        player.moveLeft();
-        break;
-
-      // E (Diagonal)
-      case E_KEY:
-        player.moveUp();
-        player.moveRight();
-        break;
-
-      // Z (Diagonal)
-      case Z_KEY:
-        player.moveDown();
-        player.moveLeft();
-        break;
-
-      // X (Diagonal)
-      case X_KEY:
-        player.moveDown();
-        player.moveRight();
-        break;
-
       // Attack
-      case SPACE_KEY:
+      case Keys.space:
         player.attack();
         break;
 
