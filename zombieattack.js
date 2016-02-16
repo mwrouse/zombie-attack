@@ -23,14 +23,6 @@ setInterval(function(){
 
 
 
-$(document).on('keydown', function(e){
-  if (e.keyCode == 27)
-  {
-    game.pause();
-  }
-});
-
-
 
 
 

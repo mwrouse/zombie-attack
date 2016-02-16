@@ -41,3 +41,14 @@ GameObj.prototype.pause = function()
 
 
 var game = new GameObj();
+
+
+
+
+
+$(document).on('keydown', function(e){
+  if (e.keyCode == 27)
+  {
+    game.pause();
+  }
+});
