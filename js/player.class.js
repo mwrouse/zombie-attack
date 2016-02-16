@@ -3,8 +3,8 @@ require_once('sprite.class');
 
 
 var HIGH_HEALTH = '#088A08';
-var MED_HEALTH = '#DBA901';
-var LOW_HEALTH = '#FF0000';
+var MED_HEALTH = '#C18C08';
+var LOW_HEALTH = '#DC2417';
 
 var IDLE = 0;
 var WALKING_DOWN = 1;
@@ -141,6 +141,11 @@ function PlayerObj()
      ========================== */
   this.health = function(){ return health; }
 
+  this.damage = function(amount){
+    health -= amount;
+    return health;
+  }
+
 
   // ---------------------------------
   // Updates the sprite for animations
@@ -255,9 +260,6 @@ PlayerObj.prototype.draw = function(){
 
   // Set the health value
   this.updateHealth();
-
-
-
 
   // Reset
   this.moving = false;

@@ -24,7 +24,6 @@ require_once('timer.class');
 require_once('zombie.class');
 
 
-
 // Game Loop
 setInterval(function(){
   if (!game.isPaused())
