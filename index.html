@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
+
+		<title>Zombie Attack!</title>
+		<style type="text/css">* { margin: 0; padding: 0; } html, body { background-color:#E6E6E6; overflow: hidden; height: 100%; }canvas{margin:0 auto;border:1px solid #ddd;}
+    #stats_bar{width:100%;height:100px;background-color:#ccc;border-top:1px solid #999;color: #2E2E2E; font-family: Consolas,monaco,monospace;font-size:25px;padding:20px;}
+    #health_box{position:relative;display:inline-block;}
+    #timer_box{float:right;display:inline-block;position:relative;margin-right:60px;}
+		#game-area{position:fixed;}
+		#pause-menu{position:absolute;top: 0; left: 0;text-align:center;display:none;margin-bottom: -200px;}
+		.pause-background{width:100vw;height:100vh;background: #373737; opacity: 0.6;filter: alpha(opacity=60);}
+		.center{color:#DDDDDD;width: 100%; height:100%;vertical-align:middle;position:absolute;top:20%;margin:0 auto;font-size:5vw;font-weight:bold;opacity:1;}
+		.small{font-size:2vw;display:block;}
+
+    </style>
+	</head>
+	<body>
+		<div id="pause-menu">
+			<div class="pause-background"></div>
+			<div class="center">PAUSED <span class="small">Press Escape to resume playing</small></div>
+		</div>
+
+		<canvas id="game">
+			Your browser does not support HTML5 Canvas... :(
+		</canvas>
+		<div id="stats_bar">
+      <div id="health_box">
+        <span id="health_lbl">&nbsp;Health: </span>
+        <span id="health_val">0</span>
+      </div>
+      <div id="timer_box">
+        <span id="timer_lbl">Time: </span>
+        <span id="timer_val">00:00:00</span>
+      </div>
+      <div id="zombies_box">
+        <span id="zombies_lbl">Zombies: </span>
+        <span id="zombies_val">0</span>
+      </div>
+    </div>
+
+
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="js/require_once.js" id="include_after_this"></script>
+		<script type="text/javascript" src="zombieattack.js"></script>
+	</body>
+</html>
