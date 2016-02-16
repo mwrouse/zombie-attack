@@ -20,34 +20,31 @@ function TimerObj()
 
   // Updates the timer (ticks every second)
   this.update = function(){
-    if (!paused)
+    // Increase seconds
+    seconds++;
+
+    // Increase minutes if needed
+    if (seconds >= 60)
     {
-      // Increase seconds
-      seconds++;
-
-      // Increase minutes if needed
-      if (seconds >= 60)
-      {
-        seconds = (seconds % 60);
-        minutes++;
-      }
-
-      // Increase hours if needed
-      if (minutes >= 60)
-      {
-        minutes = (minutes % 60);
-        hours++;
-      }
-
-      // Reset if needed
-      if (hours >= 100)
-      {
-        hours = minutes = seconds = 0;
-      }
-
-      // Update the timer label
-      updateLabel();
+      seconds = (seconds % 60);
+      minutes++;
     }
+
+    // Increase hours if needed
+    if (minutes >= 60)
+    {
+      minutes = (minutes % 60);
+      hours++;
+    }
+
+    // Reset if needed
+    if (hours >= 100)
+    {
+      hours = minutes = seconds = 0;
+    }
+
+    // Update the timer label
+    updateLabel();
   };
 
 
@@ -69,7 +66,7 @@ var timer = new TimerObj();
 // Set the timer update function on 1 second intervals
 $(document).ready(function(){
   setInterval(function(){
-    if (!game.isPaused())
+    if (!game.isPaused() && game.isPlaying())
     {
       timer.update();
     }

@@ -8,10 +8,21 @@
 
 		<title>Zombie Attack!</title>
 		<style type="text/css">* { margin: 0; padding: 0; } html, body { background-color:#E6E6E6; overflow: hidden; height: 100%; }canvas{margin:0 auto;border:1px solid #ddd;}
-    #stats_bar{width:100%;height:100px;background-color:#ccc;border-top:1px solid #999;color: #2E2E2E; font-family: Consolas,monaco,monospace;font-size:25px;padding:20px;}
+    #stats_bar{width:100%;height:100px;background-color:#ccc;border-top:1px solid #999;color: #2E2E2E; font-family: Consolas,monaco,monospace;font-size:25px;padding:20px;display:none;}
     #health_box{position:relative;display:inline-block;}
     #timer_box{float:right;display:inline-block;position:relative;margin-right:60px;}
-		#game-area{position:fixed;}
+		#game{display:none;}
+
+		#main-menu{position: absolute; top:0; left: 0;}
+		.main-menu-background { background: #4B4949; width: 100vw; height: 100vh;}
+		.main-menu-content {padding-left: 4vw; color:#DDDDDD; position: absolute; top:5vh; font-size: 2vw;}
+		.main-menu-content .title {font-size: 8vw; color:#ED3124; font-weight: bold;}
+		.main-menu-content .menu-options {list-style-type:none;margin-top:5vh;font-size:4vw;font-weight: bold;width:auto;}
+		.hover {display: none; color: #ED3124; cursor: pointer;}
+		.main-menu-content .menu-options li {width: 100%; cursor: pointer;}
+		.main-menu-content .menu-options li:hover .normal { display: none;}
+		.main-menu-content .menu-options li:hover .hover {display: inline;}
+
 		#pause-menu{position:absolute;top: 0; left: 0;text-align:center;display:none;margin-bottom: -200px;}
 		.pause-background{width:100vw;height:100vh;background: #373737; opacity: 0.6;filter: alpha(opacity=60);}
 		.center{color:#DDDDDD;width: 100%; height:100%;vertical-align:middle;position:absolute;top:20%;margin:0 auto;font-size:5vw;font-weight:bold;opacity:1;}
@@ -20,14 +31,34 @@
     </style>
 	</head>
 	<body>
+		<!-- Main Menu -->
+		<div id="main-menu">
+			<div class="main-menu-background"></div>
+			<div class="main-menu-content">
+				<div class="title">Zombie Attack!</div>
+				By Michael Rouse
+				<ul class="menu-options">
+					<li action="play"><span class="normal">Play</span><span class="hover">&rarr; Play</span></li>
+				</ul>
+			</div>
+		</div>
+
+
+		<!-- Pause Menu -->
 		<div id="pause-menu">
 			<div class="pause-background"></div>
 			<div class="center">PAUSED <span class="small">Press Escape to resume playing</small><br/><br/><span class="small">Or, press 'Q' to quit</span></div>
 		</div>
 
+
+
+		<!-- Game Canvas -->
 		<canvas id="game">
 			Your browser does not support HTML5 Canvas... :(
 		</canvas>
+
+
+		<!-- Stats Bar -->
 		<div id="stats_bar">
       <div id="health_box">
         <span id="health_lbl">&nbsp;Health: </span>

@@ -3,6 +3,7 @@ var Keys = {
   a: 65,
   s: 83,
   d: 68,
+  q: 81,
   up: 38,
   left: 37,
   down: 40,
@@ -26,7 +27,7 @@ require_once('zombie.class');
 
 // Game Loop
 setInterval(function(){
-  if (!game.isPaused())
+  if (!game.isPaused() && game.isPlaying())
   {
     map.draw();
     player.draw();
@@ -35,8 +36,8 @@ setInterval(function(){
 }, 1000 / game.FPS);
 
 
-
-
-
+$('li[action=play]').on('click', function(){
+  game.play();
+});
 
 });
