@@ -8,11 +8,17 @@ It uitilizes my [jQuery Require Once](https://github.com/mwrouse/jquery-require-
 
 ## Controls
 The controls for the game are simple:
+
 ESC - Pause
+
 W/Up - Move upwards
+
 A/Left - Move left
+
 S/Down - Move downwards
+
 D/Right - Move right
+
 SPACE - Attack
 
 
