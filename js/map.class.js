@@ -188,6 +188,7 @@ MapObj.prototype.draw = function(){
       {
         this.getTile(x + this.location.x, y + this.location.y).draw((x * this.tileWidth) + this.offset.x, (y * this.tileHeight) + this.offset.y);
 
+        // Place an item if there is one
         if (this.hasItem(x + this.location.x, y + this.location.y))
         {
           this.getItem(x + this.location.x, y + this.location.y).draw((x * this.tileWidth) + this.offset.x, (y * this.tileHeight) + this.offset.y);
@@ -210,9 +211,6 @@ MapObj.prototype.validMove = function(x, y){
   var map_x = parseInt((x + (this.offset.x * -1)) / this.tileWidth);
   var map_y = parseInt((y + (this.offset.y * -1)) / this.tileHeight);
 
-  console.log('Map Pos: ' + map_x + ', ' + map_y);
-  console.log('Tile: ' + this.getTileID(map_x, map_y));
-
   // Constraint to force the new map location to be valid
   if (map_x >= 0 && map_y >= 0 && map_x <= this.width && map_y <= this.height)
   {
@@ -227,7 +225,7 @@ MapObj.prototype.validMove = function(x, y){
 
     }
   }
-  console.log('Invalid Move');
+
   return false;
 
 };
@@ -350,7 +348,7 @@ MapObj.prototype.shiftDown = function(player_x, player_y) {
    {
       rand_x = Math.floor((Math.random() * (this.width - 1)));
       rand_y = Math.floor((Math.random() * (this.height - 1)));
-      console.log(rand_x + ', ' + rand_y);
+
       if (!this.hasItem(rand_x, rand_y) && this.getTileID(rand_x, rand_y) < 12)
       {
         this.placeItem(rand_x, rand_y, 00);

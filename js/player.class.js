@@ -209,36 +209,18 @@ function PlayerObj()
     return ((this.location.x == (screen.width / 2)) && (this.location.y == (screen.height / 2))); }
 
 
-  // Returns Coordinates of the center of the character
-  this.center = function()
-  {
-    var new_location = new Coordinates(this.location.x, this.location.y);
-
-    // Calculate the center
-    new_location.x += Math.round(this.width / 2);
-    new_location.y += Math.round(this.height / 2);
-
-    return new_location;
+  // Returns Coordinates of diferent areas on the character
+  this.rightFoot = function(){
+    return new Coordinates(this.location.x + this.width, this.location.y + this.height);
   }
-  // Returns the left center of a chacter
-  this.leftCenter = function(){
-    var new_location = new Coordinates(this.location.x, this.location.y);
-    new_location.y += Math.round(this.height / 2);
-    return new_location;
+  this.leftFoot = function(){
+    return new Coordinates(this.location.x, this.location.y + this.height);
   }
-  // Returns the right center of a character
-  this.rightCenter = function(){
-    var new_location = new Coordinates(this.location.x + this.width, this.location.y);
-    new_location.y += Math.round(this.height / 2);
-    return new_location;
-  }
-  // Returns the top center
-  this.topCenter = function(){
-    return new Coordinates(this.location.x + Math.round(this.width / 2), this.location.y);
-  }
-  // Returns the bottom center coordinates
-  this.bottomCenter = function(){
+  this.centerFoot = function(){
     return new Coordinates(this.location.x + Math.round(this.width / 2), this.location.y + this.height);
+  }
+  this.centerFootTop = function(){
+    return new Coordinates(this.location.x + Math.round(this.width / 2), this.location.y + Math.round(this.height / 2));
   }
 
 
@@ -280,7 +262,7 @@ PlayerObj.prototype.draw = function(){
  * ---------------- */
 PlayerObj.prototype.moveLeft = function() {
   // Make sure the player has not moved off the screen and is a valid tile
-  this.moving = (map.validMove(this.leftCenter().x - this.steps, this.leftCenter().y));
+  this.moving = (map.validMove(this.leftFoot().x - this.steps, this.leftFoot().y));
 
   // Make left the new direction
   this.direction = Directions.left;
@@ -289,7 +271,7 @@ PlayerObj.prototype.moveLeft = function() {
   // Move map if possible
   if (this.location.x <= (screen.width * 0.40))
   {
-    if (map.shiftLeft(this.leftCenter().x - this.steps, this.leftCenter().y))
+    if (map.shiftLeft(this.leftFoot().x - this.steps, this.leftFoot().y))
     {
       return;
     }
@@ -306,7 +288,7 @@ PlayerObj.prototype.moveLeft = function() {
  * ---------------- */
 PlayerObj.prototype.moveRight = function() {
   // Make sure that the location does not fall on a restricted tile
-  this.moving = map.validMove(this.rightCenter().x + this.steps, this.rightCenter().y);
+  this.moving = map.validMove(this.rightFoot().x + this.steps, this.rightFoot().y);
 
   // Make the character facing right
   this.direction = Directions.right;
@@ -315,7 +297,7 @@ PlayerObj.prototype.moveRight = function() {
   // Move the map if possible
   if ( this.location.x >= (screen.width - (screen.width * 0.40)) )
   {
-    if (map.shiftRight(this.rightCenter().x , this.rightCenter().y))
+    if (map.shiftRight(this.rightFoot().x , this.rightFoot().y))
     {
       return; // Map shifted, return (Note, that if the map senses the character will be in a restricted tile, it will still return true)
     }
@@ -333,7 +315,7 @@ PlayerObj.prototype.moveRight = function() {
  * ---------------- */
 PlayerObj.prototype.moveUp = function() {
   // Make sure the player will be on the screen
-  this.moving = (map.validMove(this.topCenter().x, this.topCenter().y - this.steps));
+  this.moving = (map.validMove(this.centerFootTop().x, this.centerFootTop().y - this.steps));
 
   // Character is going up
   this.direction = Directions.up;
@@ -342,7 +324,7 @@ PlayerObj.prototype.moveUp = function() {
   // Only move the map if the character is not out of range or stuff
   if (this.location.y <= (screen.height * 0.40))
   {
-    if (map.shiftUp(this.topCenter().x, this.topCenter().y - this.steps))
+    if (map.shiftUp(this.centerFootTop().x, this.centerFootTop().y - this.steps))
     { return; }
   }
 
@@ -360,7 +342,7 @@ PlayerObj.prototype.moveUp = function() {
  * ---------------- */
 PlayerObj.prototype.moveDown = function() {
   // Make sure the player will be on the screen
-  this.moving = (map.validMove(this.bottomCenter().x, this.bottomCenter().y + this.steps));
+  this.moving = (map.validMove(this.centerFoot().x, this.centerFoot().y + this.steps));
 
   // Character is going down
   this.direction = Directions.down;
@@ -370,7 +352,7 @@ PlayerObj.prototype.moveDown = function() {
   if (this.location.y >= (screen.height - (screen.height * .40)))
   {
 
-    if (map.shiftDown(this.bottomCenter().x, this.bottomCenter().y + this.steps))
+    if (map.shiftDown(this.centerFoot().x, this.centerFoot().y + this.steps))
     {
       this.moving = true;
       return;

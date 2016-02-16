@@ -82,7 +82,6 @@ var game = new GameObj();
 
 
 $(document).on('keydown', function(e){
-  console.log(e.keyCode);
   if (e.keyCode == Keys.esc)
   {
     game.pause();
