@@ -32,6 +32,11 @@ GameObj.prototype.isPlaying = function()
 GameObj.prototype.play = function()
 {
   this._playing = true;
+
+  // Prep the map
+
+  map.spawnItems();
+
   $('#game').show();
   $('#stats_bar').show();
 
