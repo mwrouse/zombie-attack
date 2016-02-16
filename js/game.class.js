@@ -9,6 +9,7 @@ function GameObj()
 {
   this._paused = false; // Starts off not paused, of course...
 
+  this.FPS = 30; // Frames per second
 
   this.menus = {
     pause: $('#pause-menu')

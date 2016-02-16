@@ -11,10 +11,6 @@ require_once('zombie.class');
 
 
 
-// General variables
-var FPS = 10;
-
-console.log(game.isPaused());
 // Game Loop
 setInterval(function(){
   if (!game.isPaused())
@@ -23,7 +19,7 @@ setInterval(function(){
     player.draw();
     screen.flip();
   }
-}, 1000 / FPS);
+}, 1000 / game.FPS);
 
 
 
