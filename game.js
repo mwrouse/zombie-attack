@@ -29,6 +29,7 @@ require_once('zombie.class');
 setInterval(function(){
   if (!game.isPaused() && game.isPlaying())
   {
+    player.pickup();
     map.draw();
     player.draw();
     screen.flip();

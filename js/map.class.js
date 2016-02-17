@@ -1,4 +1,5 @@
 require_once('sprite.class');
+require_once('healthpack.clss');
 
 /*
  * ===============================
@@ -152,11 +153,11 @@ function MapObj()
     {
       return items[item_data[y][x]];
     }
-    else
-    {
-      return null;
-    }
-  };
+    return null;
+  }
+  this.getItemID = function(x, y){
+    return item_data[y][x];
+  }
 
   // Tells if a grid has an item
   this.hasItem = function(x, y)
@@ -167,6 +168,10 @@ function MapObj()
   this.placeItem = function(x, y, itemID)
   {
     item_data[y][x] = itemID;
+  }
+  this.removeItem = function(x, y)
+  {
+    item_data[y][x] = -1;
   }
 }
 
@@ -186,9 +191,10 @@ MapObj.prototype.draw = function(){
 
       if ( ((x + this.location.x) < this.width) && ((this.location.y + y) < this.height) )
       {
+        // Draw the tile on the buffer
         this.getTile(x + this.location.x, y + this.location.y).draw((x * this.tileWidth) + this.offset.x, (y * this.tileHeight) + this.offset.y);
 
-        // Place an item if there is one
+        // Draw the item on the buffer
         if (this.hasItem(x + this.location.x, y + this.location.y))
         {
           this.getItem(x + this.location.x, y + this.location.y).draw((x * this.tileWidth) + this.offset.x, (y * this.tileHeight) + this.offset.y);
@@ -203,12 +209,29 @@ MapObj.prototype.draw = function(){
 
 
 
+MapObj.prototype.getLocation = function(x, y){
+  var loc = new Coordinates(parseInt((this.offset.x * -1) / this.tileWidth), parseInt((this.offset.y * -1) / this.tileHeight));
+
+  // Make sure x and y are valid
+  if (x >= 0 && x <= screen.width && y >= 0 && y <= screen.height)
+  {
+    loc.x += x;
+    loc.y += y;
+  }
+
+  if (loc.x >= 0 && loc.y >= 0 && loc.x <= this.width && loc.y <= this.height)
+    return loc; // Return the coordinates on the map
+  else
+    return new Coordinates(); // Coordinates on map someone ended up invalid, return (0, 0)
+};
+
+
 
 /* ----------------
  *    Valid Move
  * ---------------- */
 MapObj.prototype.validMove = function(x, y){
-  var map_x = parseInt((x + (this.offset.x * -1)) / this.tileWidth);
+  var map_x = parseInt((x  + (this.offset.x * -1)) / this.tileWidth);
   var map_y = parseInt((y + (this.offset.y * -1)) / this.tileHeight);
 
   // Constraint to force the new map location to be valid
@@ -222,13 +245,36 @@ MapObj.prototype.validMove = function(x, y){
       {
         return true;
       }
-
     }
   }
 
   return false;
 
 };
+
+MapObj.prototype.pickupItem = function(x, y){
+  var map_x = parseInt((x  + (this.offset.x * -1)) / this.tileWidth);
+  var map_y = parseInt((y + (this.offset.y * -1)) / this.tileHeight);
+
+  // Constraint to force the new map location to be valid
+  if (map_x >= 0 && map_y >= 0 && map_x <= this.width && map_y <= this.height)
+  {
+    // Constraint to make sure the character sprite does not move off of the screen
+    if (x >= 0 && x <= screen.width && y >= 0 && y <= screen.height)
+    {
+      var item_id = this.getItemID(map_x, map_y);
+      if (item_id != -1)
+      {
+        this.removeItem(map_x, map_y); // Remove the item
+        return item_id;
+      }
+    }
+  }
+
+  // Not a valid location
+  return null;
+};
+
 
 MapObj.prototype.validShift = function(x, y){
   return ( (this.location.x + x <= this.width) && (this.location.y + y <= this.height) );

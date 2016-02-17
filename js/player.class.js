@@ -203,12 +203,6 @@ function PlayerObj()
   };
 
 
-
-  // IS character centered?
-  this.isCentered = function(){
-    return ((this.location.x == (screen.width / 2)) && (this.location.y == (screen.height / 2))); }
-
-
   // Returns Coordinates of diferent areas on the character
   this.rightFoot = function(){
     return new Coordinates(this.location.x + this.width, this.location.y + this.height);
@@ -219,9 +213,10 @@ function PlayerObj()
   this.centerFoot = function(){
     return new Coordinates(this.location.x + Math.round(this.width / 2), this.location.y + this.height);
   }
-  this.centerFootTop = function(){
+  this.centerFootTop = this.center = function(){
     return new Coordinates(this.location.x + Math.round(this.width / 2), this.location.y + Math.round(this.height / 2));
   }
+
 
 
 
@@ -277,6 +272,7 @@ PlayerObj.prototype.moveLeft = function() {
     }
   }
 
+  // Move the character if the map could not shift
   if (this.moving)
   {
     this.location.x -= this.steps;
@@ -385,24 +381,36 @@ PlayerObj.prototype.attack = function(){
 
 
 
-
-
-
 /* ----------------
  *  Set Health Value
  * ---------------- */
 PlayerObj.prototype.updateHealth = function(){
-  // Update the value
+  // Update the text label
   this.health_lbl.html(this.health());
 
-  // update the color of the text if needed
-  if (this.health() > 70)
-    this.health_lbl.css('color', HIGH_HEALTH);
-  else if (this.health() > 40)
-    this.health_lbl.css('color', MED_HEALTH);
-  else
-    this.health_lbl.css('color', LOW_HEALTH);
+  // update the color of the text to represent the level of health
+  this.health_lbl.css('color', (this.health() > 70) ? HIGH_HEALTH : (this.health() > 40) ? MED_HEALTH : LOW_HEALTH);
 };
+
+
+
+
+/* ----------------
+ *   Pickup Items
+ * ---------------- */
+PlayerObj.prototype.pickup = function()
+{
+  if (map.pickupItem(this.center().x, this.center().y) != null)
+  {
+    console.log('item picked up!');
+  }
+};
+
+
+
+
+
+
 
 
 
@@ -421,7 +429,7 @@ var player = new PlayerObj();
 
 // Keypress Binding for directional movement
 $(document).on('keydown', function(e){
-  if (!game.isPaused())
+  if (!game.isPaused() && game.isPlaying())
   {
   	switch (e.keyCode)
   	{
