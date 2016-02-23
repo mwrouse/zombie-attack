@@ -112,10 +112,6 @@ function PlayerObj()
 
   this.animationFrame = 0; // Current frame of an animation to show
 
-
-
-
-
   /*
    * Privileged Functions (Can access private variables)
    */
@@ -143,6 +139,7 @@ function PlayerObj()
   {
     if (hp_increase !== undefined)
     {
+      console.log(hp_increase);
       _health += hp_increase;
       if (_health > 100) { _health = 100; }
       this.updateHealth();
@@ -346,8 +343,9 @@ function PlayerObj()
 
   // Reset
   this.stopMoving();
- }
 
+
+ }
 
 
  /*
@@ -410,6 +408,7 @@ PlayerObj.prototype.pickup = function()
     // Increase health if the item was a health pack
     if (item == HEALTH_PACK)
     {
+
       this.health(rand(rand(10, 50), rand(50, 70))); // Random health between a random low number a random high number
     }
   }

@@ -3,3 +3,4 @@
  *      Healthpack Class
  * ===============================
  */
+var HEALTH_PACK = 0;

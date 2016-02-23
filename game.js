@@ -24,6 +24,7 @@ $(document).ready(function(){
       map.draw();
       player.draw();
       screen.flip();
+
     }
   }, 1000 / game.FPS);
 
@@ -33,3 +34,10 @@ $(document).ready(function(){
   });
 
 });
+
+
+
+function rand(LOW, HIGH)
+{
+  return Math.floor((Math.random() * (HIGH - LOW + 1)) + LOW);
+}

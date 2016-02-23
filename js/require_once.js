@@ -54,8 +54,3 @@ function require_once(script)
   }
 
 }
-
-function rand(LOW, HIGH)
-{
-  return Math.floor((Math.random() * (HIGH - LOW + 1)) + LOW);
-}
