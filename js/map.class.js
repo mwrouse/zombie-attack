@@ -1,5 +1,4 @@
-require_once('sprite.class');
-require_once('healthpack.clss');
+
 
 /*
  * ===============================

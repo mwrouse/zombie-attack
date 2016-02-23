@@ -43,7 +43,7 @@ GameObj.prototype.play = function()
   this.menus.main.hide();
 
   return this.isPlaying();
-}
+};
 
 
 

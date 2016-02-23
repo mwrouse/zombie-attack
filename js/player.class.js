@@ -3,7 +3,6 @@
  *        Player Object
  * ===============================
  */
-require_once('sprite.class');
 
 var Directions = {left: 0, right:1, up:2, down:3, idle:4};
 /*
@@ -244,7 +243,7 @@ function PlayerObj()
 
     var foots = (direction == -1) ? this.leftFoot() : this.rightFoot();
 
-    var condition = (direction == -1) ? (this.location().x <= (screen.width * 0.40)) : (this.location().x >= (screen.width * 0.40));
+    var movable = (direction == -1) ? (this.location().x <= (screen.width * 0.40)) : (this.location().x >= (screen.width * 0.40));
 
     // Make sure the next tile is valid
     _moving = map.validMove(foots.x + speed, foots.y);
@@ -255,7 +254,7 @@ function PlayerObj()
     if (this.isMoving())
     {
       // Move the map if possible
-      if (condition)
+      if (movable)
       {
         var shifted = (direction == -1) ? map.shiftLeft(foots.x + speed, foots.y) : map.shiftRight(foots.x + speed, foots.y);
 

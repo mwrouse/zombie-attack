@@ -1,3 +1,4 @@
+
 var Keys = {
   w: 87,
   a: 65,
@@ -15,30 +16,20 @@ var Keys = {
 
 $(document).ready(function(){
 
-
-require_once('coordinates.class');
-require_once('map.class');
-require_once('game.class');
-require_once('screen.class');
-require_once('player.class');
-require_once('timer.class');
-require_once('zombie.class');
-
-
-// Game Loop
-setInterval(function(){
-  if (!game.isPaused() && game.isPlaying())
-  {
-    player.pickup();
-    map.draw();
-    player.draw();
-    screen.flip();
-  }
-}, 1000 / game.FPS);
+  // Game Loop
+  setInterval(function(){
+    if (!game.isPaused() && game.isPlaying())
+    {
+      player.pickup();
+      map.draw();
+      player.draw();
+      screen.flip();
+    }
+  }, 1000 / game.FPS);
 
 
-$('li[action=play]').on('click', function(){
-  game.play();
-});
+  $('li[action=play]').on('click', function(){
+    game.play();
+  });
 
 });
