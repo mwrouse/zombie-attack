@@ -108,3 +108,18 @@ document.addEventListener('keydown', function(e)
       break;
   }
 });
+
+
+document.getElementById('resume').addEventListener('click', function(e){
+  if (game.isPaused())
+  {
+    game.pause();
+  }
+});
+
+document.getElementById('quit').addEventListener('click', function(e){
+  if (game.isPaused())
+  {
+    location.reload();
+  }
+});

@@ -17,12 +17,9 @@
 		.main-menu-background { background: #4B4949; width: 100vw; height: 100vh;}
 		.main-menu-content {padding-left: 4vw; color:#DDDDDD; position: absolute; top:5vh; font-size: 2vw;}
 		.main-menu-content .title {font-size: 8vw; color:#ED3124; font-weight: bold;}
-		.main-menu-content .menu-options {list-style-type:none;margin-top:5vh;font-size:4vw;font-weight: bold;width:auto;}
-		.hover {display: none; color: #ED3124; cursor: pointer;}
-		.main-menu-content .menu-options li {width: 100%; cursor: pointer;}
-		.main-menu-content .menu-options li:hover .normal { display: none;}
-		.main-menu-content .menu-options li:hover .hover {display: inline;}
-
+		.menu-options {list-style-type:none;margin-top:5vh;font-size:4vw;font-weight: bold;width:auto;}
+		.menu-options li {width: 100%; cursor: pointer;}
+		.menu-options li:hover { color: #ED3124; cursor: pointer;}
 		#pause-menu{position:absolute;top: 0; left: 0;text-align:center;visibility:hidden;margin-bottom: -200px;}
 		.pause-background{width:100vw;height:100vh;background: #373737; opacity: 0.6;filter: alpha(opacity=60);}
 		.center{color:#DDDDDD;width: 100%; height:100%;vertical-align:middle;position:absolute;top:20%;margin:0 auto;font-size:5vw;font-weight:bold;opacity:1;}
@@ -39,7 +36,7 @@
 				<div class="title">Zombie Attack!</div>
 				By Michael Rouse
 				<ul class="menu-options">
-					<li id="play-btn" action="play"><span class="normal">Play</span><span class="hover">&rarr; Play</span></li>
+					<li id="play-btn" action="play">Play</li>
 				</ul>
 			</div>
 		</div>
@@ -48,7 +45,12 @@
 		<!-- Pause Menu -->
 		<div id="pause-menu">
 			<div class="pause-background"></div>
-			<div class="center">PAUSED <span class="small">Press Escape to resume playing</span><br/><br/><span class="small">Or, press 'Q' to quit</span></div>
+			<div class="center">PAUSED <br/>
+				<ul class="menu-options">
+					<li id="resume"><span class="small">Resume (Esc)</span></li>
+					<li id="quit"><span class="small">Quit (Q)</span></li>
+				</ul>
+			</div>
 		</div>
 
 
