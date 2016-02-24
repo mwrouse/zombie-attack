@@ -25,7 +25,6 @@ window.onload = function ()
       map.draw();
       player.draw();
       screen.flip();
-
     }
   }, 1000 / game.FPS);
 
