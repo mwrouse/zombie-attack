@@ -21,4 +21,4 @@ D/Right - Move right
 SPACE - Attack
 
 
-[Play the game HERE](http://mwrouse.com/portfolio/zombieattack)
+[Play the game HERE](http://mwrouse.com/~zombieattack)
