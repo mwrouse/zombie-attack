@@ -389,10 +389,10 @@ PlayerObj.prototype.moveDown = function()
  */
 PlayerObj.prototype.updateHealth = function()
 {
-  //var lbl = document.getElementById('health_val');
+  var lbl = document.getElementById('health_val');
 
-  //lbl.innerHTML = this.health(); // Update the label
-  //lbl.style.color = (this.health() > 70) ? '#088A08' : (this.health() > 40) ? '#C18C08' : '#DC2417';
+  lbl.innerHTML = this.health(); // Update the label
+  lbl.style.color = (this.health() > 70) ? '#088A08' : (this.health() > 40) ? '#C18C08' : '#DC2417';
 };
 
 
