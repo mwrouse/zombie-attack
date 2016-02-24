@@ -23,8 +23,6 @@ function MapObj()
   this.location = new Coordinates();
   this.offset = new Coordinates(); // Map offset in pixels
 
-
-
   this.steps = 8;
 
 
@@ -153,25 +151,33 @@ function MapObj()
       return items[item_data[y][x]];
     }
     return null;
-  }
+  };
   this.getItemID = function(x, y){
     return item_data[y][x];
-  }
+  };
 
   // Tells if a grid has an item
   this.hasItem = function(x, y)
   {
     return (item_data[y][x] >= 0);
-  }
+  };
 
   this.placeItem = function(x, y, itemID)
   {
     item_data[y][x] = itemID;
-  }
+  };
   this.removeItem = function(x, y)
   {
     item_data[y][x] = -1;
-  }
+  };
+
+
+  // Resize the map if the screen size changes
+  this.redimension = function()
+  {
+    this.dimensions.tilesWide = parseInt(screen.width / this.tileWidth);
+    this.dimensions.tilesTall = parseInt(screen.height / this.tileHeight);
+  };
 }
 
 

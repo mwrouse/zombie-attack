@@ -19,6 +19,7 @@ window.onload = function ()
 
   // Game Loop
   setInterval(function(){
+    
     if (!game.isPaused() && game.isPlaying())
     {
       player.pickup();
