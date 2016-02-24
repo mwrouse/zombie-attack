@@ -10,13 +10,13 @@ The controls for the game are simple:
 
 ESC - Pause
 
-W/Up - Move upwards
+W/&uarr; - Move upwards
 
-A/Left - Move left
+A/&larr; - Move left
 
-S/Down - Move downwards
+S/&darr; - Move downwards
 
-D/Right - Move right
+D/&rarr; - Move right
 
 SPACE - Attack
 
