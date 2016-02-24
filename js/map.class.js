@@ -178,8 +178,8 @@ function MapObj()
 /* ----------------
  * Draw on Buffer
  * ---------------- */
-MapObj.prototype.draw = function(){
-
+MapObj.prototype.draw = function()
+{
   for (var x = 0; x <= this.width; x++)
   {
     if ( ((x * this.tileWidth) + this.offset.x) >= screen.width){x = this.width + 1;}

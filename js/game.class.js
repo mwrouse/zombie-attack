@@ -16,8 +16,8 @@ function GameObj()
   this.FPS = 10; // Frames per second
 
   this.menus = {
-    main: $('#main-menu'),
-    pause: $('#pause-menu')
+    main: document.getElementById('main-menu'),
+    pause: document.getElementById('pause-menu')
   };
 }
 
@@ -32,15 +32,17 @@ GameObj.prototype.isPlaying = function()
 GameObj.prototype.play = function()
 {
   this._playing = true;
+  this._paused = false;
 
   // Prep the map
 
   map.spawnItems();
 
-  $('#game').show();
-  $('#stats_bar').show();
+  document.getElementById('game').style.visibility = 'visible';
+  document.getElementById('stats_bar').style.visibility = 'visible';
 
-  this.menus.main.hide();
+  this.menus.main.style.visibility = 'hidden';
+  this.menus.pause.style.visibility = 'hidden';
 
   return this.isPlaying();
 };
@@ -61,14 +63,8 @@ GameObj.prototype.pause = function()
   {
     this._paused = !this._paused;
 
-    if (this.isPaused())
-    {
-      this.menus.pause.show();
-    }
-    else
-    {
-      this.menus.pause.hide();
-    }
+    this.menus.pause.style.visibility = (this.isPaused()) ? 'visible' : 'hidden';
+
   }
 
   return this.isPaused();
@@ -81,14 +77,34 @@ var game = new GameObj();
 
 
 
-$(document).on('keydown', function(e){
+document.addEventListener('keydown', function(e)
+{
   if (e.keyCode == Keys.esc)
   {
+    e.preventDefault();
     game.pause();
   }
 
   if ((e.keyCode == Keys.q) && game.isPaused())
   {
+    e.preventDefault();
     location.reload();
+  }
+
+  // This segment of code prevents the page from scrolling down if the player hits a directional key while the game is paused
+  switch (e.keyCode)
+  {
+    // A/Left
+    case Keys.a:
+    case Keys.left:
+    case Keys.w:
+    case Keys.up:
+    case Keys.d:
+    case Keys.right:
+    case Keys.s:
+    case Keys.down:
+    case Keys.space:
+      e.preventDefault();
+      break;
   }
 });

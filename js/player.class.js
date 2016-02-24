@@ -389,10 +389,10 @@ PlayerObj.prototype.moveDown = function()
  */
 PlayerObj.prototype.updateHealth = function()
 {
-  var lbl = $('#health_val');
+  //var lbl = document.getElementById('health_val');
 
-  lbl.html(this.health()); // Update the label
-  lbl.css('color', (this.health() > 70) ? '#088A08' : (this.health() > 40) ? '#C18C08' : '#DC2417');
+  //lbl.innerHTML = this.health(); // Update the label
+  //lbl.style.color = (this.health() > 70) ? '#088A08' : (this.health() > 40) ? '#C18C08' : '#DC2417';
 };
 
 
@@ -443,7 +443,8 @@ var player = new PlayerObj();
 
 
 // Keypress Binding for directional movement
-$(document).on('keydown', function(e){
+document.addEventListener('keydown', function(e)
+{
   if (!game.isPaused() && game.isPlaying())
   {
   	switch (e.keyCode)
@@ -451,29 +452,34 @@ $(document).on('keydown', function(e){
       // A/Left
       case Keys.a:
   		case Keys.left:
+        e.preventDefault();
   			player.moveLeft();
   			break;
 
       // W/Up
       case Keys.w:
   		case Keys.up:
+        e.preventDefault();
   			player.moveUp();
   			break;
 
       // D/Right
       case Keys.d:
   		case Keys.right:
+        e.preventDefault();
   			player.moveRight();
   			break;
 
       // S/Down
       case Keys.s:
   		case Keys.down:
+        e.preventDefault();
   			player.moveDown();
   			break;
 
       // Attack
       case Keys.space:
+        e.preventDefault();
         player.attack();
         break;
 

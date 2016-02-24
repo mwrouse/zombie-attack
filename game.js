@@ -14,7 +14,8 @@ var Keys = {
   esc: 27
 };
 
-$(document).ready(function(){
+window.onload = function ()
+{
 
   // Game Loop
   setInterval(function(){
@@ -29,11 +30,21 @@ $(document).ready(function(){
   }, 1000 / game.FPS);
 
 
-  $('li[action=play]').on('click', function(){
+  // Start playing when the play button is clicked
+  var play_btn = document.getElementById('play-btn');
+  play_btn.addEventListener('click', function(e) {
     game.play();
+
+    // Start the timer
+    setInterval(function(){
+      if (!game.isPaused() && game.isPlaying())
+      {
+        timer.update();
+      }
+    }, 1000);
   });
 
-});
+}
 
 
 

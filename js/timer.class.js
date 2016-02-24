@@ -15,8 +15,10 @@ function TimerObj()
 
   // Update the timer label
   function updateLabel() {
-    $('#timer_val').html(pad(hours) + ':' + pad(minutes) + ':' + pad(seconds));
-  };
+    var label = document.getElementById('timer_val');
+    label.innerHTML = pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
+
+  }
 
   // Updates the timer (ticks every second)
   this.update = function(){
@@ -59,19 +61,6 @@ function TimerObj()
 
 var timer = new TimerObj();
 
-
-
-
-
-// Set the timer update function on 1 second intervals
-$(document).ready(function(){
-  setInterval(function(){
-    if (!game.isPaused() && game.isPlaying())
-    {
-      timer.update();
-    }
-  }, 1000);
-});
 
 
 

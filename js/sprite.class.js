@@ -25,7 +25,8 @@ function Sprite(img_url, s_width, s_height)
   this.height = function() { return height; }
 
   // Place the sprite on the buffer
-  this.draw = function(x, y){
+  this.draw = function(x, y)
+  {
     screen.buffer.drawImage(img, x, y);
   };
 }

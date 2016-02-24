@@ -8,10 +8,10 @@
 
 		<title>Zombie Attack!</title>
 		<style type="text/css">* { margin: 0; padding: 0; } html, body { background-color:#E6E6E6; overflow: hidden; height: 100%; }canvas{margin:0 auto;border:1px solid #ddd;}
-    #stats_bar{width:100%;height:100px;background-color:#ccc;border-top:1px solid #999;color: #2E2E2E; font-family: Consolas,monaco,monospace;font-size:25px;padding:20px;display:none;}
+    #stats_bar{width:100%;height:100px;background-color:#ccc;border-top:1px solid #999;color: #2E2E2E; font-family: Consolas,monaco,monospace;font-size:25px;padding:20px;visibility:hidden;}
     #health_box{position:relative;display:inline-block;}
     #timer_box{float:right;display:inline-block;position:relative;margin-right:60px;}
-		#game{display:none;}
+		#game{visibility:hidden;}
 
 		#main-menu{position: absolute; top:0; left: 0;}
 		.main-menu-background { background: #4B4949; width: 100vw; height: 100vh;}
@@ -23,7 +23,7 @@
 		.main-menu-content .menu-options li:hover .normal { display: none;}
 		.main-menu-content .menu-options li:hover .hover {display: inline;}
 
-		#pause-menu{position:absolute;top: 0; left: 0;text-align:center;display:none;margin-bottom: -200px;}
+		#pause-menu{position:absolute;top: 0; left: 0;text-align:center;visibility:hidden;margin-bottom: -200px;}
 		.pause-background{width:100vw;height:100vh;background: #373737; opacity: 0.6;filter: alpha(opacity=60);}
 		.center{color:#DDDDDD;width: 100%; height:100%;vertical-align:middle;position:absolute;top:20%;margin:0 auto;font-size:5vw;font-weight:bold;opacity:1;}
 		.small{font-size:2vw;display:block;}
@@ -39,7 +39,7 @@
 				<div class="title">Zombie Attack!</div>
 				By Michael Rouse
 				<ul class="menu-options">
-					<li action="play"><span class="normal">Play</span><span class="hover">&rarr; Play</span></li>
+					<li id="play-btn" action="play"><span class="normal">Play</span><span class="hover">&rarr; Play</span></li>
 				</ul>
 			</div>
 		</div>
@@ -76,7 +76,7 @@
     </div>
 
 
-		<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+		<!-- Game Files -->
 		<script src="js/coordinates.class.js" type="text/javascript"></script>
 		<script src="js/screen.class.js" type="text/javascript"></script>
 		<script src="js/sprite.class.js" type="text/javascript"></script>
