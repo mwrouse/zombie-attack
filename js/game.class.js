@@ -123,3 +123,27 @@ document.getElementById('quit').addEventListener('click', function(e){
     location.reload();
   }
 });
+
+document.getElementById('about-option').addEventListener('click', function(e){
+  var info = document.getElementById('about-about');
+  if (info.style.display == 'block')
+  {
+    info.style.display = 'none';
+  }
+  else {
+    info.style.display = 'block';
+    document.getElementById('controls-controls').style.display = 'none';
+  }
+});
+
+document.getElementById('controls-option').addEventListener('click', function(e){
+  var info = document.getElementById('controls-controls');
+  if (info.style.display == 'block')
+  {
+    info.style.display = 'none';
+  }
+  else {
+    info.style.display = 'block';
+    document.getElementById('about-about').style.display = 'none';
+  }
+});
